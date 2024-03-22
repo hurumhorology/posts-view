@@ -74,6 +74,9 @@ devDependencies:
   typescript:
     specifier: ^5.4.3
     version: 5.4.3
+  typescript-transform-paths:
+    specifier: ^3.4.7
+    version: 3.4.7(typescript@5.4.3)
 
 packages:
 
@@ -4571,6 +4574,15 @@ packages:
       has-proto: 1.0.3
       is-typed-array: 1.1.13
       possible-typed-array-names: 1.0.0
+    dev: true
+
+  /typescript-transform-paths@3.4.7(typescript@5.4.3):
+    resolution: {integrity: sha512-1Us1kdkdfKd2unbkBAOV2HHRmbRBYpSuk9nJ7cLD2hP4QmfToiM/VpxNlhJc1eezVwVqSKSBjNSzZsK/fWR/9A==}
+    peerDependencies:
+      typescript: '>=3.6.5'
+    dependencies:
+      minimatch: 3.1.2
+      typescript: 5.4.3
     dev: true
 
   /typescript@5.4.3:

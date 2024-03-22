@@ -6,6 +6,10 @@
     "emitDeclarationOnly": true,
     "incremental": true
   },
+  "plugins": [
+    { "transform": "typescript-transform-paths" },
+    { "transform": "typescript-transform-paths", "afterDeclarations": true }
+  ],
   "exclude": ["**/*.spec.tsx", "**/*.stories.tsx"],
   "include": ["./src/"],
   "extends": "./tsconfig.json"

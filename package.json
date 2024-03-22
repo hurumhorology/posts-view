@@ -7,9 +7,7 @@
   "module": "./build/esm/index.js",
   "types": "./build/esm/index.d.ts",
   "scripts": {
-    "build": "rm -rf ./build/ && pnpm build:rollup && pnpm build:esm && pnpm build:cjs",
-    "build:cjs": "tsc -p tsconfig.build.json",
-    "build:esm": "tsc -p tsconfig.build.json --module esnext --declaration --outDir ./build/esm",
+    "build": "rm -rf ./build/ && pnpm build:rollup",
     "build:rollup": "rollup -c --bundleConfigAsCjs"
   },
   "repository": {
@@ -26,6 +24,7 @@
     "@babel/preset-env": "^7.24.3",
     "@babel/preset-react": "^7.24.1",
     "@babel/preset-typescript": "^7.24.1",
+    "@rollup/plugin-alias": "^5.1.0",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
@@ -38,12 +37,13 @@
     "eslint": "^8.57.0",
     "eslint-config-hurumhorology": "^1.2.0",
     "eslint-config-next": "^14.1.4",
+    "eslint-plugin-storybook": "^0.8.0",
     "html-react-parser": "^5.1.9",
     "prettier": "^3.2.5",
     "react": "^18.2.0",
     "rollup": "^4.13.0",
+    "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "tslib": "^2.6.2",
     "typescript": "^5.4.3",
     "typescript-transform-paths": "^3.4.7"
   },

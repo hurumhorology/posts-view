@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "outDir": "./build/cjs",
+    "declaration": true,
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "incremental": true
+  },
+  "exclude": ["**/*.spec.tsx", "**/*.stories.tsx"],
+  "include": ["./src/"],
+  "extends": "./tsconfig.json"
+}

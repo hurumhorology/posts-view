@@ -1,0 +1,52 @@
+{
+  "name": "hurumhorology-posts-view",
+  "author": "pyo-sh <pygosky@gmail.com>",
+  "version": "0.1.0",
+  "description": "Hurumhorology post view components with NextJS",
+  "main": "./build/cjs/index.js",
+  "module": "./build/esm/index.js",
+  "types": "./build/esm/index.d.ts",
+  "scripts": {
+    "build": "rm -rf ./build/ && pnpm build:rollup && pnpm build:esm && pnpm build:cjs",
+    "build:cjs": "tsc -p tsconfig.build.json",
+    "build:esm": "tsc -p tsconfig.build.json --module esnext --declaration --outDir ./build/esm",
+    "build:rollup": "rollup -c --bundleConfigAsCjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hurumhorology/eslint-config.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "hurumhorology"
+  ],
+  "packageManager": "pnpm@8.11.0",
+  "devDependencies": {
+    "@babel/core": "^7.24.3",
+    "@babel/preset-env": "^7.24.3",
+    "@babel/preset-react": "^7.24.1",
+    "@babel/preset-typescript": "^7.24.1",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/react": "^18.2.67",
+    "@types/react-dom": "^18.2.22",
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "@typescript-eslint/parser": "^7.3.1",
+    "eslint": "^8.57.0",
+    "eslint-config-hurumhorology": "^1.2.0",
+    "eslint-config-next": "^14.1.4",
+    "html-react-parser": "^5.1.9",
+    "prettier": "^3.2.5",
+    "react": "^18.2.0",
+    "rollup": "^4.13.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "tslib": "^2.6.2",
+    "typescript": "^5.4.3"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  }
+}

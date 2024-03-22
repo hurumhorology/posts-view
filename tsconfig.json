@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": false,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noErrorTruncation": true,
+    "plugins": [{ "name": "next" }],
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true
+  },
+  "exclude": ["./build/", "./lib/", "./.next/", "node_modules"],
+  "include": [
+    ".next/types/**/*.ts",
+    "**/*.js",
+    "**/*.mdx",
+    "**/*.mjs",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "extends": "./tsconfig.alias.json"
+}

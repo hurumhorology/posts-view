@@ -3,13 +3,8 @@
   "author": "pyo-sh <pygosky@gmail.com>",
   "version": "0.1.0",
   "description": "Hurumhorology post view components with NextJS",
-  "main": "./build/cjs/index.js",
-  "module": "./build/esm/index.js",
-  "types": "./build/esm/index.d.ts",
   "scripts": {
     "build": "rm -rf ./build/ && pnpm build:rollup",
-    "build:cjs": "tsc -p tsconfig.build.json",
-    "build:esm": "tsc -p tsconfig.build.json --module esnext --declaration --outDir ./build/esm",
     "build:rollup": "rollup -c --bundleConfigAsCjs",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -52,6 +47,7 @@
     "eslint-config-hurumhorology": "^1.2.0",
     "eslint-config-next": "^14.1.4",
     "eslint-plugin-storybook": "^0.8.0",
+    "fast-glob": "^3.3.2",
     "html-react-parser": "^5.1.9",
     "prettier": "^3.2.5",
     "react": "^18.2.0",

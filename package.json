@@ -39,6 +39,7 @@
     "@storybook/addon-interactions": "^8.0.4",
     "@storybook/addon-links": "^8.0.4",
     "@storybook/addon-onboarding": "^8.0.4",
+    "@storybook/addon-styling-webpack": "^1.0.0",
     "@storybook/blocks": "^8.0.4",
     "@storybook/react": "^8.0.4",
     "@storybook/react-vite": "^8.0.4",
@@ -57,11 +58,14 @@
     "rollup": "^4.13.0",
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-scss": "3",
+    "sass": "^1.72.0",
     "storybook": "^8.0.4",
     "typescript": "^5.4.3",
     "typescript-transform-paths": "^3.4.7"
   },
   "peerDependencies": {
+    "html-react-parser": "^5.1.9",
     "react": "^18.2.0"
   }
 }

@@ -9,10 +9,9 @@ import typescript from "@rollup/plugin-typescript";
 import { dts } from "rollup-plugin-dts";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import scss from "rollup-plugin-scss";
-import multiInput from "./rollup.input.js";
 import aliasJson from "./tsconfig.alias.json";
 
-const INPUTS = "src/**/index.ts";
+const INPUT = "src/index.ts";
 const OUTPUT_DIR = "build";
 
 const defineStyleOutputs = (styles, styleNodes) => {
@@ -47,16 +46,17 @@ const defineEntries = () => {
 
 const configs = [
   {
-    input: INPUTS,
+    input: INPUT,
     output: [
       {
         dir: OUTPUT_DIR,
         format: "esm",
         sourcemap: true,
+        preserveModules: true,
+        preserveModulesRoot: "src",
       },
     ],
     plugins: [
-      multiInput(),
       scss({ output: defineStyleOutputs }),
       peerDepsExternal(),
       resolve(),
@@ -75,11 +75,10 @@ const configs = [
     ],
   },
   {
-    input: INPUTS,
+    input: INPUT,
     output: [{ dir: OUTPUT_DIR, format: "esm" }],
     external: [/\.(css|sass|scss)$/],
     plugins: [
-      multiInput(),
       dts(),
       alias({
         entries: defineEntries(),

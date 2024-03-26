@@ -13,7 +13,9 @@
     "eslint-config-hurumhorology",
     "eslint-config-hurumhorology/typescript",
     "eslint-config-hurumhorology/prettier",
-    "next/core-web-vitals",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
     "plugin:storybook/recommended"
   ],
   "parserOptions": {
@@ -25,6 +27,12 @@
       "jsx": true
     }
   },
-  "ignorePatterns": ["node_modules", "public", ".git", "build"],
+  "ignorePatterns": [
+    "node_modules",
+    "public",
+    ".git",
+    "build",
+    ".rollup.cache"
+  ],
   "rules": {}
 }

@@ -14,14 +14,14 @@ const INPUT = "src/index.ts";
 const OUTPUT_DIR = "build";
 
 // To change d.ts alias path via tsconfig.alias.json
-const defineEntries = () => {
+const ALIAS_ENTRIES = (() => {
   return Object.entries(aliasJson.compilerOptions.paths).map(([from, [to]]) => {
     return {
       find: from.replaceAll("/*", ""),
       replacement: path.resolve(__dirname, to.replaceAll("/*", "")),
     };
   });
-};
+})();
 
 const configs = [
   {
@@ -38,6 +38,7 @@ const configs = [
       onWarnStyle(...args);
     },
     plugins: [
+      alias({ entries: ALIAS_ENTRIES }),
       style({
         removePath: "src",
         scopedName: "[local]",
@@ -62,12 +63,7 @@ const configs = [
     input: INPUT,
     output: [{ dir: OUTPUT_DIR, format: "esm" }],
     external: [/\.(css|sass|scss)$/],
-    plugins: [
-      dts(),
-      alias({
-        entries: defineEntries(),
-      }),
-    ],
+    plugins: [dts(), alias({ entries: ALIAS_ENTRIES })],
   },
 ];
 

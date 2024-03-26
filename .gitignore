@@ -22,6 +22,7 @@ lerna-debug.log*
 build/
 storybook-static/
 tsconfig.tsbuildinfo
+.rollup
 
 # Tests
 /coverage
@@ -38,3 +39,6 @@ tsconfig.tsbuildinfo
 *.sln
 *.sw?
 
+# Storybook
+stories
+*storybook.log

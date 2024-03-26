@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "outDir": "./build",
+    "declaration": true,
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "incremental": true
+  },
+  "plugins": [
+    { "transform": "typescript-transform-paths" },
+    { "transform": "typescript-transform-paths", "afterDeclarations": true }
+  ],
+  "exclude": [".storybook", "**/*.spec.tsx", "**/*.stories.tsx"],
+  "include": ["./src/"],
+  "extends": "./tsconfig.json"
+}

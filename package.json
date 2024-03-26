@@ -1,0 +1,78 @@
+{
+  "name": "hurumhorology-posts-view",
+  "author": "pyo-sh <pygosky@gmail.com>",
+  "version": "0.1.0",
+  "main": "build/index.js",
+  "module": "src/index.ts",
+  "description": "Hurumhorology post view components with NextJS",
+  "exports": {
+    ".": "./build/index.js"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "rm -rf ./build/ && pnpm build:rollup",
+    "build:rollup": "rollup -c --bundleConfigAsCjs",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hurumhorology/eslint-config.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "hurumhorology"
+  ],
+  "packageManager": "pnpm@8.11.0",
+  "devDependencies": {
+    "@babel/core": "^7.24.3",
+    "@babel/preset-env": "^7.24.3",
+    "@babel/preset-react": "^7.24.1",
+    "@babel/preset-typescript": "^7.24.1",
+    "@chromatic-com/storybook": "^1.2.25",
+    "@rollup/plugin-alias": "^5.1.0",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@storybook/addon-essentials": "^8.0.4",
+    "@storybook/addon-interactions": "^8.0.4",
+    "@storybook/addon-links": "^8.0.4",
+    "@storybook/addon-onboarding": "^8.0.4",
+    "@storybook/addon-styling-webpack": "^1.0.0",
+    "@storybook/blocks": "^8.0.4",
+    "@storybook/react": "^8.0.4",
+    "@storybook/react-vite": "^8.0.4",
+    "@storybook/test": "^8.0.4",
+    "@types/react": "^18.2.67",
+    "@types/react-dom": "^18.2.22",
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "@typescript-eslint/parser": "^7.3.1",
+    "eslint": "^8.57.0",
+    "eslint-config-hurumhorology": "^1.2.0",
+    "eslint-config-next": "^14.1.4",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-storybook": "^0.8.0",
+    "fast-glob": "^3.3.2",
+    "html-react-parser": "^5.1.9",
+    "postcss": "^8.4.38",
+    "postcss-modules": "^6.0.0",
+    "prettier": "^3.2.5",
+    "react": "^18.2.0",
+    "rollup": "^4.13.0",
+    "rollup-plugin-dts": "^6.1.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-pluginutils": "^2.8.2",
+    "sass": "^1.72.0",
+    "storybook": "^8.0.4",
+    "typescript": "^5.4.3",
+    "typescript-transform-paths": "^3.4.7"
+  },
+  "peerDependencies": {
+    "html-react-parser": "^5.1.9",
+    "react": "^18.2.0"
+  }
+}

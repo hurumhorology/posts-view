@@ -116,7 +116,10 @@ const postCssLoader = async ({ code, fiePath, options }) => {
 
 const PLUGIN_NAME = "rollup-plugin-lib-style";
 const MAGIC_PATH = "@@_MAGIC_PATH_@@";
-const MAGIC_PATH_IMPORT_REGEX = new RegExp(`\\"(${MAGIC_PATH}.*)\\"\\;`, "g");
+const MAGIC_PATH_IMPORT_REGEX = new RegExp(
+  `\\"(${MAGIC_PATH}([^\\;])*)\\"\\;`,
+  "g",
+);
 
 const modulesIds = new Set();
 

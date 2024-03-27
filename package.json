@@ -8,7 +8,9 @@
   "exports": {
     ".": "./build/index.js"
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "*.scss"
+  ],
   "scripts": {
     "build": "rm -rf ./build/ && pnpm build:rollup",
     "build:rollup": "rollup -c --bundleConfigAsCjs",

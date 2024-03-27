@@ -238,7 +238,7 @@ const style = (options = {}) => {
 
       // create a new js file with css module
       return {
-        code: importStr,
+        code: importStr + postCssResult.code,
         map: { mappings: "" },
       };
     },

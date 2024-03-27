@@ -1,0 +1,10 @@
+$default-style: "ui-serif", "Georgia", "Cambria", "Times New Roman", "Times",
+  "serif";
+
+$libre-baskerville: var(--font-libre-baskerville), $default-style;
+$libre-franklin: var(--font-libre-franklin), $default-style;
+$aoboshi-one: var(--font-aoboshi-one), $default-style;
+$nixie-one: var(--font-nixie-one), $default-style;
+$caudex: var(--font-caudex), $default-style;
+$junge: var(--font-junge), $default-style;
+$bellefair: var(--font-bellefair), $default-style;

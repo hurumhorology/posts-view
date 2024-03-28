@@ -1,0 +1,24 @@
+/* Aoboshi One 400 */
+@import url("https://fonts.googleapis.com/css2?family=Aoboshi+One&display=swap");
+/* Libre Baskerville 400 700 */
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap");
+/* Libre Franklin 400 500 700 */
+@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:ital@0;0,500;0,700;1;1,500;1,700&display=swap");
+/* Caudex 400 */
+@import url("https://fonts.googleapis.com/css2?family=Caudex:ital@0;1&display=swap");
+/* Junge 400 */
+@import url("https://fonts.googleapis.com/css2?family=Junge&display=swap");
+/* Bellefair 400 */
+@import url("https://fonts.googleapis.com/css2?family=Bellefair&display=swap");
+/* Nixie One 400 */
+@import url("https://fonts.googleapis.com/css2?family=Nixie+One&display=swap");
+
+:root {
+  --font-libre-baskerville: "Libre Baskerville";
+  --font-libre-franklin: "Libre Franklin";
+  --font-aoboshi-one: "Aoboshi One";
+  --font-nixie-one: "Nixie One";
+  --font-caudex: "Caudex";
+  --font-junge: "Junge";
+  --font-bellefair: "Bellefair";
+}

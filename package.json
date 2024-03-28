@@ -12,7 +12,8 @@
     "*.scss"
   ],
   "scripts": {
-    "build": "rm -rf ./build/ && pnpm build:rollup",
+    "start": "npm run storybook",
+    "build": "rm -rf ./build/ && npm run build:rollup",
     "build:rollup": "rollup -c --bundleConfigAsCjs",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"

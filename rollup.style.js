@@ -41,7 +41,8 @@ const DEFAULT_SCOPED_NAME = "[local]_[hash:hex:6]";
  * @property {object[]} postCssPlugins
  * @property {string} classNamePrefix
  * @property {string} scopedName
- * @property {string} removePath
+ * @property {string} inputDir
+ * @property {string} outputDir
  */
 
 /**
@@ -115,14 +116,9 @@ const postCssLoader = async ({ code, fiePath, options }) => {
 };
 
 const PLUGIN_NAME = "rollup-plugin-lib-style";
-const MAGIC_PATH = "@@_MAGIC_PATH_@@";
-const MAGIC_PATH_IMPORT_REGEX = new RegExp(
-  `\\"(${MAGIC_PATH}([^\\;])*)\\"\\;`,
-  "g",
-);
-
+const CSS_IMPORT_REGEX = new RegExp(`import[- ]?['"]([^;]*)\\.css['"];`, "gm");
+const CSS_IMPORT_DELETE_REGEX = new RegExp(`((import)|\\s|'|"|;)`, "g");
 const modulesIds = new Set();
-
 const outputPaths = [];
 
 const defaultLoaders = [
@@ -143,17 +139,17 @@ const defaultLoaders = [
 // !: This is what I(pyosh) changed (1)
 // css file imports need to be relative by its file
 const replaceMagicPath = (currentPath, fileContent, customPath = ".") => {
-  const matches = fileContent.match(MAGIC_PATH_IMPORT_REGEX);
-
+  const matches = fileContent?.match(CSS_IMPORT_REGEX);
   if (matches) {
     // find relative paths by compare with currentPath and imported string
     matches.map((matchedStr) => {
-      const strPath = matchedStr.replace(`"${MAGIC_PATH}/`, "").slice(0, -2);
-      const curPath = currentPath.replace(outputPaths, "").replace("/", "");
-
-      const relativePath = path.relative(path.dirname(curPath), strPath);
+      const curDir = path.dirname(path.join(__dirname, currentPath));
+      const strPath = path.join(
+        curDir,
+        matchedStr.replace(CSS_IMPORT_DELETE_REGEX, ""),
+      );
+      const relativePath = path.relative(curDir, strPath);
       const realPath = `${customPath ? `${customPath}/` : ""}${relativePath}`;
-
       fileContent = fileContent.replace(matchedStr, `"${realPath}";`);
     });
   }
@@ -189,7 +185,6 @@ const style = (options = {}) => {
     async transform(code, id) {
       const loader = getLoader(id);
       if (!filter(id) || !loader) return null;
-
       modulesIds.add(id);
 
       const rawCss = await loader.process({ filePath: id, code });
@@ -203,14 +198,17 @@ const style = (options = {}) => {
       for (const dependency of postCssResult.dependencies)
         this.addWatchFile(dependency);
 
-      let cssFilePath = id.replace(process.cwd(), "").replace(/\\/g, "/");
+      let cssFilePath = id
+        .replace(process.cwd(), "")
+        .replace(/\\/g, "/")
+        .replace(loader.regex, ".css");
 
       // !: This is what I(pyosh) changed (2)
       // css files need to be delete src path
-      if (options.removePath && typeof options.removePath === "string") {
-        const pathPrefix = options.removePath.startsWith("/") ? "" : "/";
+      if (options.inputDir && typeof options.inputDir === "string") {
+        const pathPrefix = options.inputDir.startsWith("/") ? "" : "/";
         cssFilePath = cssFilePath.replace(
-          `${pathPrefix}${options.removePath}`,
+          `${pathPrefix}${options.inputDir}`,
           "",
         );
       }
@@ -218,13 +216,25 @@ const style = (options = {}) => {
       // create a new css file with the generated hash class names
       this.emitFile({
         type: "asset",
-        fileName: cssFilePath.replace("/", "").replace(loader.regex, ".css"),
+        fileName: cssFilePath.replace("/", ""),
         source: postCssResult.extracted.code,
       });
 
-      const importStr = importCSS
-        ? `import "${MAGIC_PATH}${cssFilePath.replace(loader.regex, ".css")}";\n`
-        : "";
+      let cssImportPath = cssFilePath;
+
+      // !: This is what I(pyosh) changed (3)
+      // css files need to be add build path
+      if (options.outputDir && typeof options.outputDir === "string") {
+        const pathPrefix = cssImportPath.startsWith("/") ? "" : "/";
+        const dirPrefix = options.outputDir.startsWith("/") ? "" : "/";
+        cssImportPath = `${dirPrefix}${options.outputDir}${pathPrefix}${cssImportPath}`;
+      }
+
+      cssImportPath = path.join(__dirname, cssImportPath);
+
+      // !: DO NOT USE MAGIC PATH
+      //   if sideEffects: true, it will not work
+      const importStr = importCSS ? `import "${cssImportPath}";\n` : "";
 
       // create a new js file with css module
       return {
@@ -259,12 +269,17 @@ const style = (options = {}) => {
   };
 };
 
+const CSS_UNRESOLVED_REGEX = new RegExp(
+  `\\.css" is imported by "(.*)\\.(css|scss|sass|less|stylus)"`,
+  "g",
+);
 const onwarn = (warning, warn) => {
   if (
     warning.code === "UNRESOLVED_IMPORT" &&
-    warning.message.includes(MAGIC_PATH)
-  )
+    warning.message.match(CSS_UNRESOLVED_REGEX)
+  ) {
     return;
+  }
   warn(warning);
 };
 

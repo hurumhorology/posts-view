@@ -40,7 +40,8 @@ const configs = [
     plugins: [
       alias({ entries: ALIAS_ENTRIES }),
       style({
-        removePath: "src",
+        inputDir: "src",
+        outputDir: "build",
         scopedName: "[local]",
       }),
       peerDepsExternal(),
